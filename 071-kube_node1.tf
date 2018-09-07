@@ -54,6 +54,7 @@ resource "vsphere_virtual_machine" "kube_node1" {
   disk {
     name                = "${var.kube_node1_vm_params["hostname"]}.vmdk"
     size                = "16"
+    thin_provisioned    = false
   }
 
 # Define template and customisation params
