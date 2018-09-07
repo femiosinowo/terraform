@@ -10,7 +10,11 @@ data "vsphere_host" "host" {
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
- 
+data "vsphere_resource_pool" "pool" {
+  # If you haven't resource pool, put "Resources" after cluster name
+  name          = "${var.cluster}/Resources"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
 
 # Retrieve datastore information on vsphere
 data "vsphere_datastore" "datastore" {

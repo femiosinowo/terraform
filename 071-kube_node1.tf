@@ -32,7 +32,7 @@ variable "kube_node1_network_params" {
 
 
 ###########################
-Resources
+#Resources
 ##################################
 
 resource "vsphere_virtual_machine" "kube_node1" {
@@ -41,7 +41,7 @@ resource "vsphere_virtual_machine" "kube_node1" {
   memory                 = "${var.kube_node1["ram"]}"
   datastore_id           = "${data.vsphere_datastore.datastore.id}"
   host_system_id         = "${data.vsphere_host.host.id}"
-  resource_pool_id       = ""
+  resource_pool_id       = "${data.vsphere_resource_pool.pool.id}"
   guest_id               = "${data.vsphere_virtual_machine.template.guest_id}"
   scsi_type              = "${data.vsphere_virtual_machine.template.scsi_type}"
 
