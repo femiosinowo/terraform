@@ -11,6 +11,10 @@ provider "vsphere" {
 }
 
 #### TEMPLATES
+variable "vcenter_user" {}
+variable "vcenter_password" {}
+variable "vsphere_server" {}
+
 
 # You must add template in vsphere before use it
 variable "template_image" {
