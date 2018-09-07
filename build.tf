@@ -13,7 +13,7 @@ resource "vsphere_virtual_machine" "centos-test" {
     memory = 8192
     domain = "paosin.local"
     datacenter = "${var.vsphere_datacenter}"
-    cluster = "${var.vsphere_cluster}"
+    #cluster = "${var.vsphere_cluster}"
 
     # Define the Networking settings for the VM
     network_interface {
