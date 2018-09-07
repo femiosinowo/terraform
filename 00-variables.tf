@@ -2,9 +2,9 @@
 # You can use vcenter login params or simply host esxi login params
 provider "vsphere" {
   # If you use a domain set your login like this "MyDomain\\MyUser"
-  user           = "intra\\username"
-  password       = "secret"
-  vsphere_server = "vcenter.paosin.local"
+  user           = "${var.vcenter_user}"
+  password       = "${var.vcenter_password}"
+  vsphere_server = "${var.vsphere_server}"
 
   # if you have a self-signed cert
   allow_unverified_ssl = true
