@@ -17,7 +17,7 @@ variable "kube_node1" {
   }
 }
 
-variable "server1_network_params" {
+variable "kube_node1_network_params" {
   default = {
     domain           = "paosin.local"
     label            = "vm_network_1"
@@ -33,7 +33,7 @@ variable "server1_network_params" {
 Resources
 ##################################
 
-resource "vsphere_virtual_machine" "server1" {
+resource "vsphere_virtual_machine" "kube_node1" {
   name                   = "${var.kube_node1["hostname"]}"
   num_cpus               = "${var.kube_node1["vcpu"]}"
   memory                 = "${var.kube_node1["ram"]}"
@@ -61,16 +61,16 @@ resource "vsphere_virtual_machine" "server1" {
     customize {
       linux_options {
         host_name       = "${var.kube_node1["hostname"]}"
-        domain          = "${var.server1_network_params["domain"]}"
+        domain          = "${var.kube_node1_network_params["domain"]}"
       }
 
       network_interface {
-        ipv4_address    = "${var.server1_network_params["ipv4_address"]}"
-        ipv4_netmask    = "${var.server1_network_params["prefix_length"]}"
+        ipv4_address    = "${var.kube_node1_network_params["ipv4_address"]}"
+        ipv4_netmask    = "${var.kube_node1_network_params["prefix_length"]}"
         dns_server_list = "${var.dns_servers}"
       }
 
-      ipv4_gateway      = "${var.server1_network_params["gateway"]}"
+      ipv4_gateway      = "${var.kube_node1_network_params["gateway"]}"
     }
   }
   depends_on            = ["vsphere_host_port_group.network_port"]
