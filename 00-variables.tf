@@ -29,7 +29,7 @@ variable "dc" {
 
 # Set cluster where you want deploy your vm
 variable "cluster" {
-  default = "my-litle-cluster"
+  default = "paosin-cluster"
 }
 
 # Set host where you want deploy your vm
@@ -57,7 +57,7 @@ variable "server1_vm_params" {
     vcpu           = "2"
     ram            = "4096"
     # You can't set a datastore name with interspace
-    disk_datastore = "datastore_test"
+    disk_datastore = "hdd2"
     disk_size      = "15"
   }
 }
@@ -83,7 +83,7 @@ variable "server2_vm_params" {
     vcpu           = "2"
     ram            = "2048"
     # You can't set a datastore name with interspace
-    disk_datastore = "datastore_test"
+    disk_datastore = "hdd2"
     disk_size      = "15"
   }
 }
