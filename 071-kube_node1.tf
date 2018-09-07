@@ -36,9 +36,9 @@ variable "kube_node1_network_params" {
 ##################################
 
 resource "vsphere_virtual_machine" "kube_node1" {
-  name                   = "${var.kube_node1["hostname"]}"
-  num_cpus               = "${var.kube_node1["vcpu"]}"
-  memory                 = "${var.kube_node1["ram"]}"
+  name                   = "${var.kube_node1_vm_params["hostname"]}"
+  num_cpus               = "${var.kube_node1_vm_params["vcpu"]}"
+  memory                 = "${var.kube_node1_vm_params["ram"]}"
   datastore_id           = "${data.vsphere_datastore.datastore.id}"
   host_system_id         = "${data.vsphere_host.host.id}"
   resource_pool_id       = "${data.vsphere_resource_pool.pool.id}"
@@ -52,7 +52,7 @@ resource "vsphere_virtual_machine" "kube_node1" {
 
 # Configure Disk
   disk {
-    name                = "${var.kube_node1["hostname"]}.vmdk"
+    name                = "${var.kube_node1_vm_params["hostname"]}.vmdk"
     size                = "16"
   }
 
@@ -62,7 +62,7 @@ resource "vsphere_virtual_machine" "kube_node1" {
 
     customize {
       linux_options {
-        host_name       = "${var.kube_node1["hostname"]}"
+        host_name       = "${var.kube_node1_vm_params["hostname"]}"
         domain          = "${var.kube_node1_network_params["domain"]}"
       }
 
