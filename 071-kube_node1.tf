@@ -2,11 +2,41 @@
 #
 # Create vm with template
 #
+#### PARAMS kube_node1 INSTANCES #####################################
+#
+#
+#
+variable "kube_node1" {
+  default = {
+    hostname       = "kube_node1"
+    vcpu           = "2"
+    ram            = "4096"
+    # You can't set a datastore name with interspace
+    disk_datastore = "hdd2"
+    disk_size      = "15"
+  }
+}
+
+variable "server1_network_params" {
+  default = {
+    domain           = "paosin.local"
+    label            = "vm_network_1"
+    vlan_id          = "1"
+    ipv4_address     = "10.10.10.72"
+    prefix_length    = "24"
+    gateway          = "10.10.10.1"
+  }
+}
+
+
+###########################
+Resources
+##################################
 
 resource "vsphere_virtual_machine" "server1" {
-  name                   = "${var.server1_vm_params["hostname"]}"
-  num_cpus               = "${var.server1_vm_params["vcpu"]}"
-  memory                 = "${var.server1_vm_params["ram"]}"
+  name                   = "${var.kube_node1["hostname"]}"
+  num_cpus               = "${var.kube_node1["vcpu"]}"
+  memory                 = "${var.kube_node1["ram"]}"
   datastore_id           = "${data.vsphere_datastore.datastore.id}"
   host_system_id         = "${data.vsphere_host.host.id}"
   resource_pool_id       = "${data.vsphere_resource_pool.pool.id}"
@@ -20,7 +50,7 @@ resource "vsphere_virtual_machine" "server1" {
 
 # Configure Disk
   disk {
-    name                = "${var.server1_vm_params["hostname"]}.vmdk"
+    name                = "${var.kube_node1["hostname"]}.vmdk"
     size                = "16"
   }
 
@@ -30,7 +60,7 @@ resource "vsphere_virtual_machine" "server1" {
 
     customize {
       linux_options {
-        host_name       = "${var.server1_vm_params["hostname"]}"
+        host_name       = "${var.kube_node1["hostname"]}"
         domain          = "${var.server1_network_params["domain"]}"
       }
 

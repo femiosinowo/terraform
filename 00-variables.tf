@@ -64,10 +64,10 @@ variable "server1_vm_params" {
 
 variable "server1_network_params" {
   default = {
-    domain           = "test.local"
+    domain           = "paosin.local"
     label            = "vm_network_1"
     vlan_id          = "1"
-    ipv4_address     = "192.168.1.1"
+    ipv4_address     = "10.10.10.72"
     prefix_length    = "24"
     gateway          = "192.168.1.254"
   }
@@ -79,7 +79,7 @@ variable "server1_network_params" {
 #
 variable "server2_vm_params" {
   default = {
-    hostname       = "server2"
+    hostname       = "kube-node1"
     vcpu           = "2"
     ram            = "2048"
     # You can't set a datastore name with interspace
@@ -90,7 +90,7 @@ variable "server2_vm_params" {
 
 variable "server2_network_params" {
   default = {
-    domain           = "test.local"
+    domain           = "paosin.local"
     label            = "vm_network_1"
     vlan_id          = "1"
     ipv4_address     = "192.168.1.2"
