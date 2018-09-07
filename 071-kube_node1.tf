@@ -6,14 +6,16 @@
 #
 #
 #
-variable "kube_node1" {
+
+
+variable "kube_node1_vm_params" {
   default = {
     hostname       = "kube_node1"
     vcpu           = "2"
     ram            = "4096"
     # You can't set a datastore name with interspace
     disk_datastore = "hdd2"
-    disk_size      = "15"
+    disk_size      = "16"
   }
 }
 
