@@ -21,7 +21,7 @@ resource "vsphere_virtual_machine" "server2" {
 # Configure Disk
   disk {
     name                = "${var.server2_vm_params["hostname"]}.vmdk"
-    size                = "16"
+    size                = "20"
   }
 
 # Define template and customisation params
