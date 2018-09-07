@@ -18,13 +18,13 @@ data "vsphere_resource_pool" "pool" {
 
 # Retrieve datastore information on vsphere
 data "vsphere_datastore" "datastore" {
-  name          = "${var.server1_vm_params["disk_datastore"]}"
+  name          = "${var.kube_node1_vm_params["disk_datastore"]}"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 # Retrieve network information on vsphere
 data "vsphere_network" "network" {
-  name          = "${var.server1_network_params["label"]}"
+  name          = "${var.kube_node1_network_params["label"]}"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
   depends_on    = ["vsphere_host_port_group.network_port"]
 }
